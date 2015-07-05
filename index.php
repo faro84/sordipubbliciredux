@@ -328,7 +328,7 @@
 
                             <ul>
                                 <li><a href="tables.html">Normal Tables</a></li>
-                                <li><a href="data-tables.html">Data Tables</a></li>
+                                <li><a href="index.php?content=data-tables">Data Tables</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -549,6 +549,8 @@
                         
                         if($content == "widget-template")
                             include("widget-templates.php");
+                        else if($content == "data-tables")
+                            include("data-tables.php");
                     }
                     else
                     {
@@ -643,7 +645,70 @@
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
-
+        
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>  
+        <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
+        
+        <!-- Data Table -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //Basic Example
+                $("#data-table-basic").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    formatters: {
+                        "numberFormatter": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear3).toLocaleString();
+                        }
+                    }
+                });
+                
+                //Selection
+                $("#data-table-selection").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    selection: true,
+                    multiSelect: true,
+                    rowSelect: true,
+                    keepSelection: true
+                });
+                
+                //Command Buttons
+                $("#data-table-command").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    formatters: {
+                        "commands": function(column, row) {
+                            return "<button type=\"button\" class=\"btn btn-icon command-edit\" data-row-id=\"" + row.id + "\"><span class=\"md md-edit\"></span></button> " + 
+                                "<button type=\"button\" class=\"btn btn-icon command-delete\" data-row-id=\"" + row.id + "\"><span class=\"md md-delete\"></span></button>";
+                        }
+                    }
+                });
+            });
+            
+        </script>
         
     </body>
   </html>
