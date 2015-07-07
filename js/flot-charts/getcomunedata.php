@@ -23,15 +23,20 @@ $username = "root";
         //echo "date,totale" . PHP_EOL;
         
         $resultarray = array();
-        
+        $index = 1;
         while($row = $result->fetch_assoc())
         {
             //$date = getTimestamp($row["ANNO"] . "-" . $row["PERIODO"] . "-01");
             //echo $date;
             //$string = $row["ANNO"] . "-" . $row["PERIODO"] . "-01";
-            array_push($resultarray, array("date"=>$row["ANNO"] . "-" . $row["PERIODO"] . "-01","totale"=>$row["TOTALE"]));
+            array_push($resultarray, array("date"=>"2011" . "-" . $index . "-01","totale"=>"50"));
             //$string = "01-" . $row["PERIODO"] . "-"  .$row["ANNO"] . "," . $row["TOTALE"] . PHP_EOL;
             //echo $string;
+            
+            $index++;
+            
+            if($index == 13)
+                break;
         }
         
     }
