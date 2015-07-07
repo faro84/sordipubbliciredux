@@ -27,8 +27,7 @@
         }
     });
 })();
-
-    
+  
 /*
  * Detact Mobile Browser
  */

@@ -549,8 +549,8 @@
                         
                         if($content == "widget-template")
                             include("widget-templates.php");
-                        else if($content == "data-tables")
-                            include("data-tables.php");
+                        else if($content == "comune")
+                            include("comune.php");
                     }
                     else
                     {
@@ -621,6 +621,11 @@
         
         <script src="vendors/bower_components/flot/jquery.flot.js"></script>
         <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.pie.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.time.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.symbol.js"></script>
+        <script src="vendors/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+        <script src="vendors/bower_components/flot-orderBars/js/jquery.flot.orderBars.js"></script>   
         <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
         <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
         <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
@@ -633,27 +638,18 @@
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
         <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
         
+        <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
+        
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
         
-        <script src="js/flot-charts/curved-line-chart.js"></script>
-        <script src="js/flot-charts/line-chart.js"></script>
-        <script src="js/charts.js"></script>
+        <script src="js/flot-charts/line-chart-comune.js"></script>
         
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
-        
-        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
-        <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-        <script src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>  
-        <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
         
         <!-- Data Table -->
         <script type="text/javascript">
@@ -667,10 +663,28 @@
                         iconRefresh: 'md-refresh',
                         iconUp: 'md-expand-less'
                     },
+                    caseSensitive : false,
                     formatters: {
-                        "numberFormatter": function(column, row) {
+                        "numberFormatterTotale": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "numberFormatterTotale1": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear1).toLocaleString();
+                        },
+                        "numberFormatterTotale2": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear2).toLocaleString();
+                        },
+                        "numberFormatterTotale3": function(column, row) {
                             //Console.log(row.totalyear3);
                             return parseInt(row.totalyear3).toLocaleString();
+                        },
+                        "mylink": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            //return '<a href="/model/' + row.id + '">' + row.other_parameter + '</a>';
+                            return '<a href="index.php?content=ct&&cod_tip=' + row.codice + '">' + row.descrizione + '</a>';
                         }
                     }
                 });
