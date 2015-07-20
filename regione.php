@@ -39,7 +39,7 @@
                         </div>
                         
                         <div class="table-responsive">
-                            <?php include("php/getdata/getspesecomune.php"); ?>
+                            <?php include("php/getdata/getspeseregione.php"); ?>
                         </div>
                     </div>
                     
@@ -65,7 +65,7 @@
                                 
                                 <div class="card-body">
                                     <div class="chart-edge">
-                                        <div id="line-chart-comune" class="flot-chart"></div>
+                                        <div id="line-chart-regione" class="flot-chart"></div>
                                     </div>
                                 </div>
                     </div>
@@ -76,7 +76,8 @@
                         </div>
                         
                         <div class="table-responsive">
-                            <?php include("php/getdata/getenticomune.php"); ?>
+                            <?php include("php/getdata/getentiregione.php"); ?>
                         </div>
                     </div>
                 </div>
+

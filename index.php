@@ -543,7 +543,7 @@
             
             <section id="content">
                 <?php
-                if(isset($_GET["content"]))
+                    if(isset($_GET["content"]))
                     {
                         $content = $_GET["content"];
                         
@@ -551,12 +551,18 @@
                             include("widget-templates.php");
                         else if($content == "comune")
                             include("comune.php");
+                        else if($content == "provincia")
+                            include("provincia.php");
+                        else if($content == "regione")
+                            include("regione.php");
+                        else if($content == "ripartizione")
+                            include("ripartizione.php");
                     }
                     else
                     {
                         include("maincontent.php");
                     }
-                    ?>
+                ?>
             </section>
         </section>
         
@@ -645,7 +651,20 @@
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
         
-        <script src="js/flot-charts/line-chart-comune.js"></script>
+        <?php
+            if(isset($_GET["content"]))
+            {
+                $content = $_GET["content"];
+                if($content == "comune")
+                    echo "<script src=\"js/flot-charts/line-chart-comune.js\"></script>";
+                else if($content == "provincia")
+                    echo "<script src=\"js/flot-charts/line-chart-provincia.js\"></script>";
+                else if($content == "regione")
+                    echo "<script src=\"js/flot-charts/line-chart-regione.js\"></script>";
+                else if($content == "ripartizione")
+                    echo "<script src=\"js/flot-charts/line-chart-ripartizione.js\"></script>";
+            }
+        ?>
         
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
@@ -681,10 +700,36 @@
                             //Console.log(row.totalyear3);
                             return parseInt(row.totalyear3).toLocaleString();
                         },
+                        "numberFormatterTotaleEnte": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
                         "mylink": function(column, row) {
                             //Console.log(row.totalyear3);
                             //return '<a href="/model/' + row.id + '">' + row.other_parameter + '</a>';
                             return '<a href="index.php?content=ct&&cod_tip=' + row.codice + '">' + row.descrizione + '</a>';
+                        }
+                    }
+                });
+                
+                $("#data-table-ente-basic").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    caseSensitive : false,
+                    formatters: {
+                        "numberFormatterTotaleEnte": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "mylinkenticomune": function(column, row) {
+                            console.log(row.codice);
+                            //return '<a href="/model/' + row.id + '">' + row.other_parameter + '</a>';
+                            return '<a href="index.php?content=ente&&cod_ente=' + row.codice + '">' + row.descrizione + '</a>';
                         }
                     }
                 });

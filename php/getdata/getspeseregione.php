@@ -37,8 +37,8 @@
             public $anno3;
         }
         
-        $sql = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_tipologia" .
-                " WHERE cod_comune = '" . $_GET["cod_com"] . "' AND cod_provincia= '" . $_GET["cod_prov"] . "'" . 
+        $sql = "SELECT * FROM soldipubblici_notebook.regioni_spesatotale_per_tipologia" .
+                " WHERE cod_regione= '" . $_GET["cod_reg"] . "'" . 
                 " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -61,9 +61,9 @@
         
         foreach($tableElements as $tableElement)
         {
-            $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
+            $sql2 = "SELECT * FROM soldipubblici_notebook.regioni_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_comune = '" . $_GET["cod_com"] . "' AND cod_provincia= '" . $_GET["cod_prov"] . "';";
+                    . " AND cod_regione= '" . $_GET["cod_reg"] . "';";
             //echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)
@@ -104,3 +104,4 @@
         $conn->close();
         echo "</tbody>";
         echo "</table>";
+

@@ -1,123 +1,120 @@
-
-$(document).ready(function () {
-    
-    function getUrlVars() {
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-        });
-        return vars;
-    }
-    
-    var data2 = [];
-    
-            $.ajax({
-            url: 'js/flot-charts/getcomunedata.php?cod_com=' + getUrlVars()["cod_com"] + '&&cod_prov=' + getUrlVars()["cod_prov"],
-            type: 'get',
-            success: function(data) {
-                json = JSON.parse(data);
-                for (var i = 0; i < json.length; i++) {
-                    data2.push([new Date(json[i].date).getTime(), Number(json[i].totale)]);
-                }
-//                data2 = JSON.parse(data);
-                console.log(data2);
-            }
-        });
-    
-/* All data is from www.climatedata.eu */
- 
-    // Average rainfall
-    var d1 = [
-        [new Date('2011-01-01').getTime(), 33],
-        [new Date('2011-02-01').getTime(), 34],
-        [new Date('2011-03-01').getTime(), 23],
-        [new Date('2011-04-01').getTime(), 39],
-        [new Date('2011-05-01').getTime(), 47],
-        [new Date('2011-06-01').getTime(), 26],
-        [new Date('2011-07-01').getTime(), 11],
-        [new Date('2011-08-01').getTime(), 12],
-        [new Date('2011-09-01').getTime(), 24],
-        [new Date('2011-10-01').getTime(), 39],
-        [new Date('2011-11-01').getTime(), 48],
-        [new Date('2011-12-01').getTime(), 48]
-    ];
- console.log(d1);
-    // Temperature - average highs
-    var d2 = [
-        [new Date('2011-01-01').getTime(), 11],
-        [new Date('2011-02-01').getTime(), 13],
-        [new Date('2011-03-01').getTime(), 16],
-        [new Date('2011-04-01').getTime(), 18],
-        [new Date('2011-05-01').getTime(), 22],
-        [new Date('2011-06-01').getTime(), 28],
-        [new Date('2011-07-01').getTime(), 33],
-        [new Date('2011-08-01').getTime(), 32],
-        [new Date('2011-09-01').getTime(), 28],
-        [new Date('2011-10-01').getTime(), 21],
-        [new Date('2011-11-01').getTime(), 15],
-        [new Date('2011-12-01').getTime(), 11]
-    ];
- 
-    // Temperature - average lows
-    var d3 = [
-        [new Date('2011-01-01').getTime(), 0],
-        [new Date('2011-02-01').getTime(), 2],
-        [new Date('2011-03-01').getTime(), 3],
-        [new Date('2011-04-01').getTime(), 5],
-        [new Date('2011-05-01').getTime(), 9],
-        [new Date('2011-06-01').getTime(), 13],
-        [new Date('2011-07-01').getTime(), 16],
-        [new Date('2011-08-01').getTime(), 16],
-        [new Date('2011-09-01').getTime(), 13],
-        [new Date('2011-10-01').getTime(), 8],
-        [new Date('2011-11-01').getTime(), 4],
-        [new Date('2011-12-01').getTime(), 2]
-    ];
- 
-    var data = [
-        {
-            label: "Rainfall",
-            data: d1,
-            bars: {
-                show: true,
-                align: "center",
-                barWidth: 12*24*60*60*1000,
-                fill: true,
-                lineWidth: 1
-            },
-            color: "#478514"
-        },
-        {
-            label: "Temperature - High",
-            data: data2,
-            lines: {
-                show: true,
-                fill: false
-            },
-            points: {
-                show: true,
-                fillColor: '#AA4643'
-            },
-            color: '#AA4643',
-            yaxis: 2
-        },
-        {
-            label: "Temperature - Low",
-            data: d3,
-            lines: {
-                show: true,
-                fill: false
-            },
-            points: {
-                show: true,
-                fillColor: '#4572A7'
-            },
-            color: '#4572A7',
-            yaxis: 2
-        }
-    ];
- 
-    $.plot($("#line-chart-comune"), data);
+//
+//$(document).ready(function () {
+//    
+//    function getUrlVars() {
+//        var vars = {};
+//        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+//        vars[key] = value;
+//        });
+//        return vars;
+//    }
+//    
+///* All data is from www.climatedata.eu */
+// 
+//    // Average rainfall
+//    
+// 
+//            $.ajax({
+//            url: 'js/flot-charts/getcomunedata.php?cod_com=' + getUrlVars()["cod_com"] + '&&cod_prov=' + getUrlVars()["cod_prov"],
+//            type: 'get',
+//            success: function(data) {
+//                var d1 = [
+//        [new Date('2011-01-01').getTime(), 33],
+//        [new Date('2011-02-01').getTime(), 34],
+//        [new Date('2011-03-01').getTime(), 23],
+//        [new Date('2011-04-01').getTime(), 39],
+//        [new Date('2011-05-01').getTime(), 47],
+//        [new Date('2011-06-01').getTime(), 26],
+//        [new Date('2011-07-01').getTime(), 11],
+//        [new Date('2011-08-01').getTime(), 12],
+//        [new Date('2011-09-01').getTime(), 24],
+//        [new Date('2011-10-01').getTime(), 39],
+//        [new Date('2011-11-01').getTime(), 48],
+//        [new Date('2011-12-01').getTime(), 48]
+//    ];
+// 
+//    // Temperature - average highs
+//    var d2 = [
+//        [new Date('2011-01-01').getTime(), 11],
+//        [new Date('2011-02-01').getTime(), 13],
+//        [new Date('2011-03-01').getTime(), 16],
+//        [new Date('2011-04-01').getTime(), 18],
+//        [new Date('2011-05-01').getTime(), 22],
+//        [new Date('2011-06-01').getTime(), 28],
+//        [new Date('2011-07-01').getTime(), 33],
+//        [new Date('2011-08-01').getTime(), 32],
+//        [new Date('2011-09-01').getTime(), 28],
+//        [new Date('2011-10-01').getTime(), 21],
+//        [new Date('2011-11-01').getTime(), 15],
+//        [new Date('2011-12-01').getTime(), 11]
+//    ];
+// 
+//    // Temperature - average lows
+//    var d3 = [
+//        [new Date('2011-01-01').getTime(), 0],
+//        [new Date('2011-02-01').getTime(), 2],
+//        [new Date('2011-03-01').getTime(), 3],
+//        [new Date('2011-04-01').getTime(), 5],
+//        [new Date('2011-05-01').getTime(), 9],
+//        [new Date('2011-06-01').getTime(), 13],
+//        [new Date('2011-07-01').getTime(), 16],
+//        [new Date('2011-08-01').getTime(), 16],
+//        [new Date('2011-09-01').getTime(), 13],
+//        [new Date('2011-10-01').getTime(), 8],
+//        [new Date('2011-11-01').getTime(), 4],
+//        [new Date('2011-12-01').getTime(), 2]
+//    ];
+//                var data2 = [];
+//                json = JSON.parse(data);
+//                for (var i = 0; i < json.length; i++) {
+//                    data2.push([new Date(json[i].date).getTime(), Number(json[i].totale)]);
+//                }
+//                console.log(data2);
+//                console.log(d3);
+//                 var data = [
+//        {
+//            label: "Rainfall",
+//            data: d1,
+//            bars: {
+//                show: true,
+//                align: "center",
+//                barWidth: 12*24*60*60*1000,
+//                fill: true,
+//                lineWidth: 1
+//            },
+//            color: "#478514"
+//        },
+//        {
+//            label: "Temperature - High",
+//            data: data2,
+//            lines: {
+//                show: true,
+//                fill: false
+//            },
+//            points: {
+//                show: true,
+//                fillColor: '#AA4643'
+//            },
+//            color: '#AA4643',
+//            yaxis: 2
+//        },
+//        {
+//            label: "Temperature - Low",
+//            data: d3,
+//            lines: {
+//                show: true,
+//                fill: false
+//            },
+//            points: {
+//                show: true,
+//                fillColor: '#4572A7'
+//            },
+//            color: '#4572A7',
+//            yaxis: 2
+//        }
+//    ];
+////                data2 = JSON.parse(data);
+//                $.plot($("#line-chart-comune"), data
 //    , {
 //        xaxis: {
 //            min: (new Date(2010, 11, 15)).getTime(),
@@ -167,7 +164,11 @@ $(document).ready(function () {
 //            position: "right"
 //        }
 //    });
- 
+//            }
+//        });
+// 
+//    
+// 
 //    function showTooltip(x, y, contents, z) {
 //        $('<div id="flot-tooltip">' + contents + '</div>').css( {
 //            position: 'absolute',
@@ -184,56 +185,56 @@ $(document).ready(function () {
 //            '-khtml-border-radius': '5px',
 //            'border-radius': '5px'
 //        }).appendTo("body").fadeIn(200);
-//    }
- 
-    function getMonthName(numericMonth) {
-        var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var alphaMonth = monthArray[numericMonth];
- 
-        return alphaMonth;
-    }
- 
-    function convertToDate(timestamp) {
-        var newDate = new Date(timestamp);
-        var dateString = newDate.getMonth();
-        var monthName = getMonthName(dateString);
- 
-        return monthName;
-    }
- 
-//    var previousPoint = null;
-//    var previousPointLabel = null;
+//    };
 // 
-//    $("#line-chart-comune").bind("plothover", function (event, pos, item) {
-//        if (item) {
-//            if ((previousPoint != item.dataIndex) || (previousLabel != item.series.label)) {
-//                previousPoint = item.dataIndex;
-//                previousLabel = item.series.label;
+//    function getMonthName(numericMonth) {
+//        var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+//        var alphaMonth = monthArray[numericMonth];
 // 
-//                $("#flot-tooltip").remove();
+//        return alphaMonth;
+//    };
 // 
-//                if (item.series.label == "Temperature - High") {
-//                    var unitLabel = "\u00B0C";
-//                } else if (item.series.label == "Temperature - Low") {
-//                    var unitLabel = "\u00B0C";
-//                } else if (item.series.label == "Rainfall") {
-//                    var unitLabel = "mm";
-//                }
+//    function convertToDate(timestamp) {
+//        var newDate = new Date(timestamp);
+//        var dateString = newDate.getMonth();
+//        var monthName = getMonthName(dateString);
 // 
-//                var x = convertToDate(item.datapoint[0]);
-//                y = item.datapoint[1];
-//                z = item.series.color;
-// 
-//                showTooltip(item.pageX, item.pageY,
-//                        "<b>" + item.series.label + "</b><br /> " + x + " = " + y + unitLabel,
-//                        z);
-//            }
-//        } else {
-//            $("#flot-tooltip").remove();
-//            previousPoint = null;
-//        }
-//    });
-});
+//        return monthName;
+//    };
+ 
+////    var previousPoint = null;
+////    var previousPointLabel = null;
+//// 
+////    $("#line-chart-comune").bind("plothover", function (event, pos, item) {
+////        if (item) {
+////            if ((previousPoint != item.dataIndex) || (previousLabel != item.series.label)) {
+////                previousPoint = item.dataIndex;
+////                previousLabel = item.series.label;
+//// 
+////                $("#flot-tooltip").remove();
+//// 
+////                if (item.series.label == "Temperature - High") {
+////                    var unitLabel = "\u00B0C";
+////                } else if (item.series.label == "Temperature - Low") {
+////                    var unitLabel = "\u00B0C";
+////                } else if (item.series.label == "Rainfall") {
+////                    var unitLabel = "mm";
+////                }
+//// 
+////                var x = convertToDate(item.datapoint[0]);
+////                y = item.datapoint[1];
+////                z = item.series.color;
+//// 
+////                showTooltip(item.pageX, item.pageY,
+////                        "<b>" + item.series.label + "</b><br /> " + x + " = " + y + unitLabel,
+////                        z);
+////            }
+////        } else {
+////            $("#flot-tooltip").remove();
+////            previousPoint = null;
+////        }
+////    });
+//});
  
  
 
@@ -368,3 +369,117 @@ $(document).ready(function () {
 //        $("#line-chart-comune").UseTooltip();
 //    }
 //});
+
+
+$(document).ready(function(){
+    
+    /* Make some random data for Recent Items chart */
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+        });
+        return vars;
+    }
+    
+            $.ajax({
+            url: 'js/flot-charts/php/getcomunedata.php?cod_com=' + getUrlVars()["cod_com"] + '&&cod_prov=' + getUrlVars()["cod_prov"],
+            type: 'get',
+            success: function(data) {
+                
+                var data2 = [];
+                var d1 = [];
+                
+                json = JSON.parse(data);
+                for (var i = 0; i < json.length; i++) {
+                    data2.push([i, parseInt(json[i].totale), json[i].date]);
+                }
+                var data = [];
+                var totalPoints = 100;
+                var updateInterval = 30;
+                console.log(data2);
+                
+    
+    /* Make some random data for Flot Line Chart */
+    
+//    var d1 = [];
+//    for (var i = 0; i <= 10; i += 1) {
+//        d1.push([i, parseInt(Math.random() * 30)]);
+//    }
+    var d2 = [];
+    for (var i = 0; i <= 20; i += 1) {
+        d2.push([i, parseInt(Math.random() * 30)]);
+    }    
+    var d3 = [];
+    for (var i = 0; i <= 10; i += 1) {
+        d3.push([i, parseInt(Math.random() * 30)]);
+    }
+    console.log(d1);
+    /* Chart Options */
+    
+    var options = {
+        series: {
+            shadowSize: 0,
+            lines: {
+                show: false,
+                lineWidth: 0,
+            },
+            points: {
+                    radius: 3,
+                    fill: true,
+                    show: true
+                }
+        },
+        grid: {
+            borderWidth: 0,
+            labelMargin:10,
+            hoverable: true,
+            clickable: true,
+            mouseActiveRadius:6,
+            
+        },
+        xaxis: {
+            tickDecimals: 0,
+            ticks: false
+        },
+        
+        yaxis: {
+            tickDecimals: 0,
+            ticks: false
+        },
+        
+        legend: {
+            show: false
+        }
+    };
+    
+            /* Regular Line Chart */
+            if ($("#line-chart-comune")[0]) {
+                $.plot($("#line-chart-comune"), [
+//                    {data: data2, lines: { show: true, fill: 0.98 }, label: 'Product 1', stack: true, color: '#e3e3e3' },
+                    {data: data2, lines: { show: true, fill: 0.98 }, label: 'Product 2', stack: true, color: '#FFC107' }
+                ], options);
+            }
+            
+            if ($(".flot-chart")[0]) {
+                $(".flot-chart").bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        console.log(item);
+                        var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2)
+                            z = item.datapoint[2];
+                        $(".flot-tooltip").html(item.series.label + " of " + x + " = " + y + " / " + item.series.data[item.dataIndex][2]).css({top: item.pageY+5, left: item.pageX+5}).show();
+                    }
+                    else {
+                        $(".flot-tooltip").hide();
+                    }
+                });
+
+                $("<div class='flot-tooltip' class='chart-tooltip'></div>").appendTo("body");
+            }
+            
+        }
+    });
+    
+    
+});
