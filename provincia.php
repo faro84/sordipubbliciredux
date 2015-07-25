@@ -10,11 +10,7 @@
                         <div class="card-body card-padding">
                             
                             <div class="btn-demo">
-                                <button class="btn btn-default btn-lg">Nord Italia</button>
-                                \\
-                                <button class="btn btn-info btn-lg">Emilia - romagna</button>
-                                \\
-                                <button class="btn btn-primary btn-lg">Modena</button>
+                                <?php include("php/header/getheaderprovincia.php"); ?>
                             </div>
                             
                         </div>
@@ -24,10 +20,10 @@
                             <div class="col-sm-3">
                                 <div class="mini-charts-item bgm-cyan">
                                     <div class="clearfix">
-                                        <div class="chart stats-bar"></div>
+                                        <div class="chart stats-line"></div>
                                         <div class="count">
                                             <small>Website Traffics</small>
-                                            <h2>987,459</h2>
+                                            <h2><?php include("php/getdata/provincia/speseperpersonaindex.php");?></h2>
                                         </div>
                                     </div>
                                 </div>

@@ -1,5 +1,17 @@
                 <div class="container">
-                    <div class="block-header">
+                    <div class="card">
+  
+                        <div class="card-body card-padding">
+                            
+                            <div class="btn-demo">
+                                <?php include("php/header/getheadercomune.php"); ?>
+                            </div>
+                            
+                        </div>
+    </div>
+    
+    <?php include("php/getdata/comune/tabelle_semplici.php"); ?>
+<!--                    <div class="block-header">
                         <h2>Data Table</h2>
                         
                         <ul class="actions">
@@ -31,7 +43,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     
                     <div class="card">
                         <div class="card-header">
