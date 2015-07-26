@@ -722,6 +722,82 @@
                     },
                     caseSensitive : false,
                     formatters: {
+                        "numberFormatterTotale": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "numberFormatterTotale1": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear1).toLocaleString();
+                        },
+                        "numberFormatterTotale2": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear2).toLocaleString();
+                        },
+                        "numberFormatterTotale3": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear3).toLocaleString();
+                        },
+                        "numberFormatterTotaleEnte": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "mylink": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            //return '<a href="/model/' + row.id + '">' + row.other_parameter + '</a>';
+                            return '<a href="index.php?content=ct&&cod_tip=' + row.codice + '">' + row.descrizione + '</a>';
+                        }
+                    }
+                });
+                
+                $("#data-table-lista-comuni-basic").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    caseSensitive : false,
+                    formatters: {
+                        "numberFormatterTotale": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "numberFormatterTotale1": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear1).toLocaleString();
+                        },
+                        "numberFormatterTotale2": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear2).toLocaleString();
+                        },
+                        "numberFormatterTotale3": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.totalyear3).toLocaleString();
+                        },
+                        "numberFormatterTotaleEnte": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            return parseInt(row.total).toLocaleString();
+                        },
+                        "mylink": function(column, row) {
+                            //Console.log(row.totalyear3);
+                            //return '<a href="/model/' + row.id + '">' + row.other_parameter + '</a>';
+                            return '<a href="index.php?content=comune&&cod_com=' + row.codiceComune + '&&cod_prov=' + row.codiceProvincia + '">' + row.descrizione + '</a>';
+                        }
+                    }
+                });
+                
+                $("#data-table-lista-enti-basic").bootgrid({
+                    css: {
+                        icon: 'md icon',
+                        iconColumns: 'md-view-module',
+                        iconDown: 'md-expand-more',
+                        iconRefresh: 'md-refresh',
+                        iconUp: 'md-expand-less'
+                    },
+                    caseSensitive : false,
+                    formatters: {
                         "numberFormatterTotaleEnte": function(column, row) {
                             //Console.log(row.totalyear3);
                             return parseInt(row.total).toLocaleString();

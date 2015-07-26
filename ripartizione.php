@@ -1,15 +1,14 @@
 <div class="container">
    
     <div class="card">
-  
         <div class="card-body card-padding">
             <div class="btn-demo">
-                <?php include("php/getdata/regione/header.php"); ?>
+                <?php include("php/getdata/ripartizione/header.php"); ?>
             </div>
         </div>
     </div>
     
-    <?php include("php/getdata/regione/tabelle_semplici.php"); ?>
+    <?php include("php/getdata/ripartizione/tabelle_semplici.php"); ?>
     
     <div class="card">
         <div class="card-header">
@@ -17,17 +16,7 @@
         </div>
                         
         <div class="table-responsive">
-            <?php include("php/getdata/regione/getspeseente.php"); ?>
-        </div>
-    </div>
-    
-    <div class="card">
-        <div class="card-header">
-            <h2>Basic Example <small>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</small></h2>
-        </div>
-                        
-        <div class="table-responsive">
-            <?php include("php/getdata/regione/getlistacomuni.php"); ?>
+            <?php include("php/getdata/ripartizione/getlistacomuni.php"); ?>
         </div>
     </div>
 
@@ -37,7 +26,7 @@
         </div>
                         
         <div class="table-responsive">
-            <?php include("php/getdata/regione/getspese.php"); ?>
+            <?php include("php/getdata/ripartizione/getspese.php"); ?>
         </div>
     </div>
     
@@ -66,15 +55,16 @@
             </div>
         </div>
     </div>
-                    
+    
     <div class="card">
         <div class="card-header">
             <h2>Basic Example <small>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</small></h2>
         </div>
                         
         <div class="table-responsive">
-            <?php include("php/getdata/regione/getenti.php"); ?>
+            <?php include("php/getdata/ripartizione/getenti.php"); ?>
         </div>
     </div>
+    
 </div>
 

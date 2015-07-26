@@ -1,6 +1,6 @@
 <?php
 
-        echo "<table id=\"data-table-basic\" class=\"table table-striped\">";
+        echo "<table id=\"data-table-ente-basic\" class=\"table table-striped\">";
         echo "<thead>";
         echo "<tr>";
         echo "<th data-column-id=\"id\" data-type=\"numeric\">Nr.</th>";
@@ -37,8 +37,21 @@
             public $anno3;
         }
         
-        $sql = "SELECT * FROM soldipubblici_notebook.province_spesatotale_per_tipologia" .
-                " WHERE cod_provincia= '" . $_GET["cod_prov"] . "'" . 
+        $sql = "SELECT cod_ente FROM soldipubblici_notebook.province_spesatotale" .
+                " WHERE cod_provincia= '" . $_GET["cod_prov"] . "';";
+        //echo $sql;
+        $resultEnte = $conn->query($sql);
+        if ($resultEnte->num_rows > 0)
+        {
+            while($rowEnte = $resultEnte->fetch_assoc())
+            {
+                $codiceEnte = $rowEnte["cod_ente"];
+                break;
+            }
+        }
+        
+        $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale_per_tipologia" .
+                " WHERE cod_ente = '" . $codiceEnte . "'" . 
                 " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -61,9 +74,9 @@
         
         foreach($tableElements as $tableElement)
         {
-            $sql2 = "SELECT * FROM soldipubblici_notebook.province_spesatotale_per_anno_per_tipologia"
+            $sql2 = "SELECT * FROM soldipubblici_notebook.enti_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_provincia= '" . $_GET["cod_prov"] . "';";
+                    . " AND cod_ente = '" . $codiceEnte . "';";
             //echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)
@@ -104,4 +117,3 @@
         $conn->close();
         echo "</tbody>";
         echo "</table>";
-

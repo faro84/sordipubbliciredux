@@ -1,6 +1,6 @@
 <?php
 
-        echo "<table id=\"data-table-ente-basic\" class=\"table table-striped\">";
+        echo "<table id=\"data-table-lista-enti-basic\" class=\"table table-striped\">";
         echo "<thead>";
         echo "<tr>";
         echo "<th data-column-id=\"id\" data-type=\"numeric\">Nr.</th>";
