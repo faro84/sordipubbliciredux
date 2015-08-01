@@ -98,8 +98,6 @@
             echo "<td>" . $tableElement->codcomune . "</td>";
             echo "<td>" . $_GET["cod_prov"] . "</td>";
             echo "</tr>";
-            
-            $index++;
         }
         
         $conn->close();

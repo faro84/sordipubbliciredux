@@ -1,6 +1,6 @@
 <?php
 
-        echo "<table id=\"data-table-lista-comuni-basic\" class=\"table table-striped\">";
+        echo "<table id=\"data-table-lista-comuni-completa-basic\" class=\"table table-striped\">";
         echo "<thead>";
         echo "<tr>";
         echo "<th data-column-id=\"descrizione\" data-type=\"text\" data-formatter=\"mylink\">Descrizione</th>";
@@ -26,14 +26,31 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
-        $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
+        if(isset($_GET["cod_prov"]))
+            $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
+                . " FROM soldipubblici_notebook.comuni_spesatotale"
+                . " JOIN soldipubblici_notebook.anagrafe"
+                . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
+                . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
+                . " WHERE comuni_spesatotale.cod_provincia = '" . $_GET["cod_prov"] . "'"
+                . " ORDER BY TOTALE DESC;";
+        elseif(isset($_GET["cod_reg"]))
+            $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
                 . " FROM soldipubblici_notebook.comuni_spesatotale"
                 . " JOIN soldipubblici_notebook.anagrafe"
                 . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
                 . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
                 . " WHERE comuni_spesatotale.cod_regione = '" . $_GET["cod_reg"] . "'"
                 . " ORDER BY TOTALE DESC;";
-        //echo $sql;
+        elseif(isset($_GET["cod_rip"]))
+            $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
+                . " FROM soldipubblici_notebook.comuni_spesatotale"
+                . " JOIN soldipubblici_notebook.anagrafe"
+                . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
+                . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
+                . " WHERE comuni_spesatotale.cod_ripartizione = '" . $_GET["codcod_rip_reg"] . "'"
+                . " ORDER BY TOTALE DESC;";
+        echo $sql;
         $result = $conn->query($sql);
         $tableElements = array();
         

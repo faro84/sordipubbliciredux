@@ -23,7 +23,7 @@
     
     <div class="card">
         <div class="card-header">
-            <h2>Basic Example <small>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</small></h2>
+            <h2>Lista comuni <small><a href="index.php?content=listacomuni&&cod_reg=<?php echo $_GET["cod_reg"] ?>">Clicca qui per la lista completa</a></small></h2>
         </div>
                         
         <div class="table-responsive">

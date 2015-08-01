@@ -33,7 +33,7 @@
                 . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
                 . " WHERE comuni_spesatotale.cod_ripartizione = '" . $_GET["cod_rip"] . "'"
                 . " ORDER BY TOTALE DESC;";
-        echo $sql;
+        //echo $sql;
         $result = $conn->query($sql);
         $tableElements = array();
         
@@ -71,7 +71,7 @@
             $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
                     . " WHERE cod_comune = '". $tableElement->codcomune . "'"
                     . " AND cod_provincia = '" . $tableElement->codprovincia . "';";
-            echo $sql2;
+            //echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)
             {
@@ -101,8 +101,6 @@
             echo "<td>" . $tableElement->codcomune . "</td>";
             echo "<td>" . $tableElement->codprovincia . "</td>";
             echo "</tr>";
-            
-            $index++;
         }
         
         $conn->close();

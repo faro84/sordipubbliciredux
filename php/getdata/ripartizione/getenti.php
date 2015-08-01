@@ -24,9 +24,7 @@
         }
         
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale"
-                . " WHERE cod_comune = ''"
-                . " AND cod_provincia= ''"
-                . " AND cod_regione= '" . $_GET["cod_reg"] . "'"
+                . " WHERE cod_ripartizione= '" . $_GET["cod_rip"] . "'"
                 . " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);

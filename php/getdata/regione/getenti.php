@@ -37,14 +37,17 @@
         {
             while($row = $result->fetch_assoc())
             {
-                echo "<tr>";
-                echo "<td>" . $index . "</td>";
-                echo "<td>" . $row["DESCRIZIONE_ENTE"] . "</td>";
-                echo "<td>" . $row["TOTALE"] . "</td>";
-                echo "<td>" . $row["COD_ENTE"] . "</td>";
-                echo "</tr>";
+                if($row["TIPOLOGIA_ENTE"] != "Regione")
+                {
+                    echo "<tr>";
+                    echo "<td>" . $index . "</td>";
+                    echo "<td>" . $row["DESCRIZIONE_ENTE"] . "</td>";
+                    echo "<td>" . $row["TOTALE"] . "</td>";
+                    echo "<td>" . $row["COD_ENTE"] . "</td>";
+                    echo "</tr>";
 
-                $index++;
+                    $index++;    
+                }
             }
         }
         

@@ -10,6 +10,7 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    
     $sql = "SELECT cod_ripartizione, descrripartizione, cod_regione, descrregione, cod_provincia, descrprovincia, cod_comune, descrcomune"
         . " FROM soldipubblici_notebook.anagrafe" 
         . " WHERE cod_regione = '" . $_GET["cod_reg"] . "';";

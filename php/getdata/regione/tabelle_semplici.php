@@ -16,9 +16,23 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    
+    $sql = "SELECT cod_ente FROM soldipubblici_notebook.regioni_spesatotale" .
+                " WHERE cod_regione = '" . $_GET["cod_reg"] . "';";
+        //echo $sql;
+        $resultEnte = $conn->query($sql);
+        if ($resultEnte->num_rows > 0)
+        {
+            while($rowEnte = $resultEnte->fetch_assoc())
+            {
+                $codiceEnte = $rowEnte["cod_ente"];
+                break;
+            }
+        }
+    
     $sql = "SELECT popolazione, totale, totalepercittadino, posizionetotalespese, posizionetotalespeseperpersona"
-            . " FROM soldipubblici_notebook.regioni_spesatotale" 
-            . " WHERE cod_regione= '" . $_GET["cod_reg"] . "';";
+            . " FROM soldipubblici_notebook.enti_spesatotale" 
+            . " WHERE cod_ente = '" . $codiceEnte . "';";
     //echo $sql;
     $result = $conn->query($sql);
     

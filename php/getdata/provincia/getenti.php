@@ -24,7 +24,8 @@
         }
         
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale"
-                . " WHERE cod_comune = '' AND cod_provincia= '" . $_GET["cod_prov"] . "'"
+                . " WHERE cod_comune = '' "
+                . "AND cod_provincia= '" . $_GET["cod_prov"] . "'"
                 . " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -35,14 +36,17 @@
         {
             while($row = $result->fetch_assoc())
             {
-                echo "<tr>";
-                echo "<td>" . $index . "</td>";
-                echo "<td>" . $row["DESCRIZIONE_ENTE"] . "</td>";
-                echo "<td>" . $row["TOTALE"] . "</td>";
-                echo "<td>" . $row["COD_ENTE"] . "</td>";
-                echo "</tr>";
+                if($row["TIPOLOGIA_ENTE"] != "Provincia")
+                {
+                    echo "<tr>";
+                    echo "<td>" . $index . "</td>";
+                    echo "<td>" . $row["DESCRIZIONE_ENTE"] . "</td>";
+                    echo "<td>" . $row["TOTALE"] . "</td>";
+                    echo "<td>" . $row["COD_ENTE"] . "</td>";
+                    echo "</tr>";
 
-                $index++;
+                    $index++;    
+                }
             }
         }
         
