@@ -62,7 +62,7 @@
                                 
         <div class="card-body">
             <div class="chart-edge">
-                <div id="line-chart-provincia" class="flot-chart"></div>
+                <div id="line-chart-regione" class="flot-chart"></div>
             </div>
         </div>
     </div>

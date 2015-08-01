@@ -51,7 +51,7 @@
                         </div>
                         
                         <div class="table-responsive">
-                            <?php include("php/getdata/getspesecomune.php"); ?>
+                            <?php include("php/getdata/comune/getspese.php"); ?>
                         </div>
                     </div>
                     

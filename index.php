@@ -556,11 +556,13 @@
                         else if($content == "regione")
                             include("regione.php");
                         else if($content == "ripartizione")
-                            include("e.php");
+                            include("ripartizione.php");
                         else if($content == "ente")
                             include("ente.php");
                         else if($content == "listacomuni")
                             include("listacomuni.php");
+                        else if($content == "ct" || $content == "et" || $content == "ert" || $content == "ept")
+                            include("spesa.php");
                     }
                     else
                     {

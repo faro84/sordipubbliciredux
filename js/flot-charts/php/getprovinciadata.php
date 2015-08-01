@@ -12,8 +12,9 @@ $username = "root";
     //$con = mysqli_connect("localhost","root","root","soldipubblici_notebook") or die("Some error occurred during connection " . mysqli_error($con)); 
     if($_GET["cod_prov"]){
         
-        $sql = "SELECT ANNO, PERIODO, TOTALE, TOTALEPERCITTADINO FROM soldipubblici_notebook.province_spesatotale_per_mese_per_anno "
-                . "where cod_provincia = '" . $_GET["cod_prov"] .  "'"
+        $sql = "SELECT ANNO, PERIODO, TOTALE, TOTALEPERCITTADINO" 
+                . " FROM soldipubblici_notebook.province_spesatotale_per_mese_per_anno "
+                . " WHERE cod_provincia = '" . $_GET["cod_prov"] .  "'"
                 . " ORDER BY ANNO, PERIODO ASC;";
         $result = $con->query($sql);
         

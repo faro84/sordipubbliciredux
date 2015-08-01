@@ -8,8 +8,8 @@
         echo "<th data-column-id=\"totalyear1\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale1\">Totale 2013</th>";
         echo "<th data-column-id=\"totalyear2\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale2\">Totale 2014</th>";
         echo "<th data-column-id=\"totalyear3\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale3\">Totale 2015</th>";
-        echo "<th data-column-id=\"codiceComune\" data-identifier=\"true\" data-type=\"string\" data-visible=\"false\">Codice</th>";
-        echo "<th data-column-id=\"codiceProvincia\" data-identifier=\"true\" data-type=\"string\" data-visible=\"false\">Codice</th>";
+        echo "<th data-column-id=\"codiceComune\" data-type=\"string\" data-visible=\"false\">Codice</th>";
+        echo "<th data-column-id=\"codiceProvincia\"data-type=\"string\" data-visible=\"false\">Codice</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -31,7 +31,7 @@
                 . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
                 . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
                 . " WHERE comuni_spesatotale.cod_provincia = '" . $_GET["cod_prov"] . "'"
-                . " ORDER BY TOTALE DESC;";
+                . " ORDER BY TOTALE DESC LIMIT 30;";
         //echo $sql;
         $result = $conn->query($sql);
         $tableElements = array();
@@ -65,7 +65,7 @@
         
         foreach($tableElements as $tableElement)
         {
-            $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
+            $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno"
                     . " WHERE cod_comune = '". $tableElement->codcomune . "' "
                     . " AND cod_provincia = '" . $_GET["cod_prov"] . "';";
             //echo $sql2;

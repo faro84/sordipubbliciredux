@@ -10,6 +10,7 @@
         echo "<th data-column-id=\"totalyear2\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale2\">Totale 2014</th>";
         echo "<th data-column-id=\"totalyear3\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale3\">Totale 2015</th>";
         echo "<th data-column-id=\"codice\" data-identifier=\"true\" data-type=\"string\" data-visible=\"false\">Codice</th>";
+        echo "<th data-column-id=\"tipologia\" data-type=\"string\" data-visible=\"false\">isProvincia</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -111,6 +112,7 @@
             //echo "<td>" . number_format(floor($tableElement->anno3), 0, ",", ".") . "</td>";
             echo "<td>" . $tableElement->anno3 . "</td>";
             echo "<td>" . $tableElement->coddescrizione . "</td>";
+            echo "<td>Regione</td>";
             echo "</tr>";
             
             $index++;

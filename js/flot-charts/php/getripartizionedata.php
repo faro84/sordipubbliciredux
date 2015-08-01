@@ -1,6 +1,6 @@
 <?php
 
-$username = "root"; 
+    $username = "root"; 
     $password = "root";   
     $host = "localhost";
     $database= "soldipubblici_notebook";
@@ -10,15 +10,14 @@ $username = "root";
 
     
     //$con = mysqli_connect("localhost","root","root","soldipubblici_notebook") or die("Some error occurred during connection " . mysqli_error($con)); 
-    if($_GET["cod_com"]){
+    if($_GET["cod_rip"]){
         
         $sql = "SELECT ANNO, PERIODO, TOTALE, TOTALEPERCITTADINO" 
-                . " FROM soldipubblici_notebook.comuni_spesatotale_per_mese_per_anno "
-                . " WHERE cod_comune = '" . $_GET["cod_com"] .  "'" 
-                . " AND cod_provincia = '" . $_GET["cod_prov"] .  "'"
+                . " FROM soldipubblici_notebook.ripartizioni_spesatotale_per_mese_per_anno"
+                . " WHERE cod_ripartizione = '" . $_GET["cod_rip"] .  "'"
                 . " ORDER BY ANNO, PERIODO ASC;";
         $result = $con->query($sql);
-        
+        //echo $sql;
         if( !$result)
             die($con->error);
         

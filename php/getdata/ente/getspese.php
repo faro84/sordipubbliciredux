@@ -10,6 +10,7 @@
         echo "<th data-column-id=\"totalyear2\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale2\">Totale 2014</th>";
         echo "<th data-column-id=\"totalyear3\" data-type=\"numeric\" data-formatter=\"numberFormatterTotale3\">Totale 2015</th>";
         echo "<th data-column-id=\"codice\" data-identifier=\"true\" data-type=\"string\" data-visible=\"false\">Codice</th>";
+        echo "<th data-column-id=\"tipologia\" data-type=\"string\" data-visible=\"false\">isProvincia</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -26,6 +27,17 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        class EnteElement
+        {
+            public $descrizione;
+            public $coddescrizione;
+            public $totale;
+            public $totalepersona;
+            public $anno1;
+            public $anno2;
+            public $anno3;
+        }
+        
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale_per_tipologia" .
                 " WHERE cod_ente = '" . $_GET["cod_ente"] . "'" . 
                 " ORDER BY TOTALE DESC;";
@@ -36,7 +48,7 @@
         {
             while($row = $result->fetch_assoc())
             {
-                $tableelement = new TableElement();
+                $tableelement = new EnteElement();
                 $tableelement->totale = $row["TOTALE"];
                 $tableelement->descrizione = $row['DESCRIZIONE'];
                 $tableelement->totalepersona = $row['TOTALEPERCITTADINO'];
@@ -85,6 +97,7 @@
             //echo "<td>" . number_format(floor($tableElement->anno3), 0, ",", ".") . "</td>";
             echo "<td>" . $tableElement->anno3 . "</td>";
             echo "<td>" . $tableElement->coddescrizione . "</td>";
+            echo "<td>Ente</td>";
             echo "</tr>";
             
             $index++;
