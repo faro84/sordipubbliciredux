@@ -13,9 +13,10 @@
     
     if(isset($_GET["cod_prov"]))
     {
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
         $sql = "SELECT cod_ripartizione, descrripartizione, cod_regione, descrregione, cod_provincia, descrprovincia, cod_comune, descrcomune"
             . " FROM soldipubblici_notebook.anagrafe" 
-            . " WHERE cod_provincia='" . $_GET["cod_prov"] . "';";
+            . " WHERE cod_provincia='" . $codProv . "';";
         //echo $sql;
         $result = $conn->query($sql);
         if ($result->num_rows > 0)
@@ -32,11 +33,12 @@
             }
         }
     }
-    elseif(isset($_GET["cod_reg"]))
+    else if(isset($_GET["cod_reg"]))
     {
+        $codReg = filter_input (INPUT_GET, 'cod_reg', FILTER_SANITIZE_STRING);
         $sql = "SELECT cod_ripartizione, descrripartizione, cod_regione, descrregione, cod_provincia, descrprovincia, cod_comune, descrcomune"
             . " FROM soldipubblici_notebook.anagrafe" 
-            . " WHERE cod_regione = '" . $_GET["cod_reg"] . "';";
+            . " WHERE cod_regione = '" . $codReg . "';";
         //echo $sql;
         $result = $conn->query($sql);
         if ($result->num_rows > 0)
@@ -52,9 +54,10 @@
     }
     else if(isset($_GET["cod_rip"]))
     {
+        $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
         $sql = "SELECT cod_ripartizione, descrripartizione, cod_regione, descrregione, cod_provincia, descrprovincia, cod_comune, descrcomune"
             . " FROM soldipubblici_notebook.anagrafe" 
-            . " WHERE cod_ripartizione = '" . $_GET["cod_rip"] . "';";
+            . " WHERE cod_ripartizione = '" . $codRip . "';";
         //echo $sql;
         $result = $conn->query($sql);
         if ($result->num_rows > 0)
@@ -64,6 +67,10 @@
                 break;
             }
         }
+    }
+    else
+    {
+        echo "<button class=\"btn bgm-red btn-lg\">Lista completa comuni nazione</button>";
     }
     
     $conn->close();

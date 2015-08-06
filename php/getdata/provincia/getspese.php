@@ -26,8 +26,10 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
+        
         $sql = "SELECT * FROM soldipubblici_notebook.province_spesatotale_per_tipologia" .
-                " WHERE cod_provincia= '" . $_GET["cod_prov"] . "'" . 
+                " WHERE cod_provincia= '" . $codProv . "'" . 
                 " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);

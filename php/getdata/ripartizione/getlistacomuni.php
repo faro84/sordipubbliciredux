@@ -26,12 +26,15 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
+        //echo $codRip;
+        
         $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
                 . " FROM soldipubblici_notebook.comuni_spesatotale"
                 . " JOIN soldipubblici_notebook.anagrafe"
                 . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
                 . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
-                . " WHERE comuni_spesatotale.cod_ripartizione = '" . $_GET["cod_rip"] . "'"
+                . " WHERE comuni_spesatotale.cod_ripartizione = '" . $codRip . "'"
                 . " ORDER BY TOTALE DESC LIMIT 30;";
         //echo $sql;
         $result = $conn->query($sql);

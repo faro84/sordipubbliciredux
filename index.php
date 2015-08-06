@@ -331,6 +331,7 @@
                                 <li><a href="index.php?content=data-tables">Data Tables</a></li>
                             </ul>
                         </li>
+                        <li><a href="index.php?content=listacomuni"><i class="md md-today"></i> Lista comuni</a></li>
                         <li class="sub-menu">
                             <a href=""><i class="md md-my-library-books"></i> Forms</a>
 

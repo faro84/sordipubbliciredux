@@ -16,9 +16,13 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    
+    $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
+    //echo $codRip;
+    
     $sql = "SELECT popolazione, totale, totalepercittadino, posizionetotalespese, posizionetotalespeseperpersona"
             . " FROM soldipubblici_notebook.ripartizioni_spesatotale" 
-            . " WHERE cod_ripartizione = '" . $_GET["cod_rip"] . "';";
+            . " WHERE cod_ripartizione = '" . $codRip . "';";
     //echo $sql;
     $result = $conn->query($sql);
     

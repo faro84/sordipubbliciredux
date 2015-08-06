@@ -16,9 +16,10 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    $codEnte = filter_input (INPUT_GET, 'cod_ente', FILTER_SANITIZE_STRING);
     $sql = "SELECT popolazione, totale, totalepercittadino, posizionetotalespese, posizionetotalespeseperpersona"
             . " FROM soldipubblici_notebook.enti_spesatotale" 
-            . " WHERE cod_ente = '" . $_GET["cod_ente"] . "';";
+            . " WHERE cod_ente = '" . $codEnte . "';";
     //echo $sql;
     $result = $conn->query($sql);
     

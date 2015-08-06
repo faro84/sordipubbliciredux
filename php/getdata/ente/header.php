@@ -10,9 +10,10 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    $codEnte = filter_input (INPUT_GET, 'cod_ente', FILTER_SANITIZE_STRING);
     $sql = "SELECT cod_ente, descrizione_ente, cod_provincia, cod_regione, cod_comune"
         . " FROM soldipubblici_notebook.enti_spesatotale" 
-        . " WHERE cod_ente ='" . $_GET["cod_ente"] . "';";
+        . " WHERE cod_ente ='" . $codEnte . "';";
     //echo $sql;
     $result = $conn->query($sql);
     if ($result->num_rows > 0)

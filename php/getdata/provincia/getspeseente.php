@@ -38,8 +38,9 @@
             public $anno3;
         }
         
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
         $sql = "SELECT cod_ente FROM soldipubblici_notebook.province_spesatotale" .
-                " WHERE cod_provincia= '" . $_GET["cod_prov"] . "';";
+                " WHERE cod_provincia= '" . $codProv . "';";
         //echo $sql;
         $resultEnte = $conn->query($sql);
         if ($resultEnte->num_rows > 0)

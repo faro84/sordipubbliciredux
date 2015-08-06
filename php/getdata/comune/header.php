@@ -10,10 +10,13 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    
+    $codCom = filter_input (INPUT_GET, 'cod_com', FILTER_SANITIZE_STRING);
+    $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
     $sql = "SELECT cod_ripartizione, descrripartizione, cod_regione, descrregione, cod_provincia, descrprovincia, cod_comune, descrcomune"
         . " FROM soldipubblici_notebook.anagrafe" 
-        . " WHERE cod_comune = '" . $_GET["cod_com"] . "'"
-        . " AND cod_provincia='" . $_GET["cod_prov"] . "';";
+        . " WHERE cod_comune = '" . $codCom . "'"
+        . " AND cod_provincia='" . $codProv . "';";
     //echo $sql;
     $result = $conn->query($sql);
     if ($result->num_rows > 0)

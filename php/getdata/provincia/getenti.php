@@ -23,9 +23,11 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
+        
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale"
                 . " WHERE cod_comune = '' "
-                . "AND cod_provincia= '" . $_GET["cod_prov"] . "'"
+                . "AND cod_provincia= '" . $codProv . "'"
                 . " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);

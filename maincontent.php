@@ -2,14 +2,11 @@
         <div class="card">
             <div class="card-body card-padding">
                 <div class="btn-demo">
-                    <?php include("php/getdata/comune/header.php"); ?>
+                    <?php include("php/getdata/overview/header.php"); ?>
                 </div>            
             </div>
         </div>
-    
-        <?php include("php/getdata/comune/tabelle_semplici.php"); ?>
-
-                    
+           
         <div class="card">
             <div class="card-header">
                 <h2>Basic Example <small>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</small></h2>

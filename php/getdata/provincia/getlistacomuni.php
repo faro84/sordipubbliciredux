@@ -26,11 +26,13 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
+        
         $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino FROM soldipubblici_notebook.comuni_spesatotale"
                 . " JOIN soldipubblici_notebook.anagrafe"
                 . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
                 . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
-                . " WHERE comuni_spesatotale.cod_provincia = '" . $_GET["cod_prov"] . "'"
+                . " WHERE comuni_spesatotale.cod_provincia = '" . $codProv . "'"
                 . " ORDER BY TOTALE DESC LIMIT 30;";
         //echo $sql;
         $result = $conn->query($sql);

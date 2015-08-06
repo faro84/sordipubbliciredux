@@ -37,9 +37,12 @@
             public $anno3;
         }
         
+        $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
+        //echo $codRip;
+        
         $sql = "SELECT totale, descrizione, totalepercittadino, coddescrizione" 
                 . " FROM soldipubblici_notebook.ripartizioni_spesatotale_per_tipologia"
-                . " WHERE cod_ripartizione = '" . $_GET["cod_rip"] . "'"
+                . " WHERE cod_ripartizione = '" . $codRip . "'"
                 . " ORDER BY totale DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -64,7 +67,7 @@
         {
             $sql2 = "SELECT totale, anno FROM soldipubblici_notebook.ripartizioni_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_ripartizione = '" . $_GET["cod_rip"] . "';";
+                    . " AND cod_ripartizione = '" . $codRip . "';";
 //            echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)

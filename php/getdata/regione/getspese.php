@@ -26,9 +26,11 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codReg = filter_input (INPUT_GET, 'cod_reg', FILTER_SANITIZE_STRING);
+        
         $sql = "SELECT totale, descrizione, totalepercittadino, coddescrizione" 
                 . " FROM soldipubblici_notebook.regioni_spesatotale_per_tipologia"
-                . " WHERE cod_regione = '" . $_GET["cod_reg"] . "'"
+                . " WHERE cod_regione = '" . $codReg . "'"
                 . " ORDER BY totale DESC;";
         //echo $sql;
         $result = $conn->query($sql);

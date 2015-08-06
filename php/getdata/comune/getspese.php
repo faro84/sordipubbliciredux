@@ -37,8 +37,10 @@
             public $anno3;
         }
         
+        $codCom = filter_input (INPUT_GET, 'cod_com', FILTER_SANITIZE_STRING);
+        $codProv = filter_input (INPUT_GET, 'cod_prov', FILTER_SANITIZE_STRING);
         $sql = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_tipologia" .
-                " WHERE cod_comune = '" . $_GET["cod_com"] . "' AND cod_provincia= '" . $_GET["cod_prov"] . "'" . 
+                " WHERE cod_comune = '" . $codProv . "' AND cod_provincia= '" . $codProv . "'" . 
                 " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -63,7 +65,7 @@
         {
             $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_comune = '" . $_GET["cod_com"] . "' AND cod_provincia= '" . $_GET["cod_prov"] . "';";
+                    . " AND cod_comune = '" . $codCom . "' AND cod_provincia= '" . $codProv . "';";
             //echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)

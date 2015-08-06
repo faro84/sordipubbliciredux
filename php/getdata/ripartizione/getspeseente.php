@@ -37,8 +37,11 @@
             public $anno3;
         }
         
+        $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
+        //echo $codRip;
+        
         $sql = "SELECT cod_ente FROM soldipubblici_notebook.regioni_spesatotale" .
-                " WHERE cod_regione= '" . $_GET["cod_reg"] . "';";
+                " WHERE cod_ripartizione = '" . $codRip . "';";
         //echo $sql;
         $resultEnte = $conn->query($sql);
         if ($resultEnte->num_rows > 0)

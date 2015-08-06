@@ -38,8 +38,9 @@
             public $anno3;
         }
         
+        $codEnte = filter_input (INPUT_GET, 'cod_ente', FILTER_SANITIZE_STRING);
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale_per_tipologia" .
-                " WHERE cod_ente = '" . $_GET["cod_ente"] . "'" . 
+                " WHERE cod_ente = '" . $codEnte . "'" . 
                 " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);
@@ -64,7 +65,7 @@
         {
             $sql2 = "SELECT * FROM soldipubblici_notebook.enti_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_ente = '" . $_GET["cod_ente"] . "';";
+                    . " AND cod_ente = '" . $codEnte . "';";
 //            echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)

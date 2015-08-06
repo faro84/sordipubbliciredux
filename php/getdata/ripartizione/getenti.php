@@ -23,8 +23,10 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codRip = filter_input (INPUT_GET, 'cod_rip', FILTER_SANITIZE_STRING);
+        //echo $codRip;
         $sql = "SELECT * FROM soldipubblici_notebook.enti_spesatotale"
-                . " WHERE cod_ripartizione= '" . $_GET["cod_rip"] . "'"
+                . " WHERE cod_ripartizione= '" . $codRip . "'"
                 . " ORDER BY TOTALE DESC;";
         //echo $sql;
         $result = $conn->query($sql);

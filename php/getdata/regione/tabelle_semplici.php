@@ -17,8 +17,10 @@
         die("Connection failed: " . $conn->connect_error);
     }
     
+    $codReg = filter_input (INPUT_GET, 'cod_reg', FILTER_SANITIZE_STRING);
+    
     $sql = "SELECT cod_ente FROM soldipubblici_notebook.regioni_spesatotale" .
-                " WHERE cod_regione = '" . $_GET["cod_reg"] . "';";
+                " WHERE cod_regione = '" . $codReg . "';";
         //echo $sql;
         $resultEnte = $conn->query($sql);
         if ($resultEnte->num_rows > 0)
