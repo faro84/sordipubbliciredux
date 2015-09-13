@@ -55,7 +55,7 @@
         {
             $sql2 = "SELECT totale, anno FROM soldipubblici_notebook.regioni_spesatotale_per_anno_per_tipologia"
                     . " WHERE coddescrizione = '". $tableElement->coddescrizione . "' "
-                    . " AND cod_regione = '" . $_GET["cod_reg"] . "';";
+                    . " AND cod_regione = '" . $codReg . "';";
 //            echo $sql2;
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0)

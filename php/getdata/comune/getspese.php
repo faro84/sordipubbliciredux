@@ -42,16 +42,14 @@
         $sql = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_tipologia" .
                 " WHERE cod_comune = '" . $codCom . "' AND cod_provincia= '" . $codProv . "'" . 
                 " ORDER BY TOTALE DESC;";
-        echo $sql;
+        //echo $sql;
         $result = $conn->query($sql);
         $tableElements = array();
-        $i = 0;
+        
         if ($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
             {
-                if($i == 0)
-                    echo "totale totale: " . $row["TOTALE"]. "</br>";
                 $tableelement = new TableElement();
                 $tableelement->totale = $row["TOTALE"];
                 $tableelement->descrizione = $row['DESCRIZIONE'];
@@ -61,10 +59,8 @@
                 $tableelement->anno2 = "0";
                 $tableelement->anno3 = "0";
                 array_push($tableElements, $tableelement);
-                $i++;
             }
         }
-        $i = 0;
         foreach($tableElements as $tableElement)
         {
             $sql2 = "SELECT * FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
@@ -85,13 +81,7 @@
                     else if($row2['ANNO'] == "2015"){
                         $tableElement->anno3 = $row2['TOTALE'];
                     }
-                    
-                    if($i == 0)
-                    {
-                        echo $row2["TOTALE"] . "</br>";
-                    }
                 }
-                $i++;
             }
         }
         

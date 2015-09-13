@@ -12,20 +12,20 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
-        $sql = "SELECT comuni_spesatotale.cod_comune, descrcomune, totale, totalepercittadino,comuni_spesatotale.cod_provincia"
-                . " FROM soldipubblici_notebook.comuni_spesatotale"
+        $sql = "SELECT province_spesatotale.cod_provincia, descrprovincia, totale, totalepercittadino"
+                . " FROM soldipubblici_notebook.province_spesatotale"
                 . " JOIN soldipubblici_notebook.anagrafe"
-                . " ON anagrafe.cod_comune = comuni_spesatotale.cod_comune "
-                . " AND anagrafe.cod_provincia = comuni_spesatotale.cod_provincia"
-                . " ORDER BY TOTALE DESC"
+                . " ON anagrafe.cod_provincia = province_spesatotale.cod_provincia "
+                . " GROUP BY province_spesatotale.cod_provincia"
+                . " ORDER BY totale DESC"
                 . " LIMIT 10;";
-        //echo $sql;
+//        echo $sql;
         $result = $conn->query($sql);
         $tableElements = array();
         
-        class InfoSpesaTotaleComune
+        class InfoSpesaTotaleProvincia
         {
-            public $comune;
+            public $provincia;
             public $totale;
         }
         
@@ -37,9 +37,9 @@
         {
             while($row = $result->fetch_assoc())
             {
-                $tableelement = new InfoSpesaTotaleComune();
+                $tableelement = new InfoSpesaTotaleProvincia();
                 $tableelement->totale = round($row["totale"]);
-                $tableelement->comune = $row['descrcomune'];
+                $tableelement->provincia = $row['descrprovincia'];
                 array_push($tableElements, $tableelement);
                 if($tableelement->totale > $max)
                     $max = $tableelement->totale;
@@ -47,14 +47,14 @@
                     $min = $tableelement->totale;
                 $index++;
                 
-                if(strlen($tableelement->comune) > $maxLength)
-                    $maxLength = strlen($tableelement->comune);
+                if(strlen($tableelement->provincia) > $maxLength)
+                    $maxLength = strlen($tableelement->provincia);
             }
         }
         
         foreach($tableElements as $tableElement)
         {
-            $diff = ($maxLength - strlen($tableElement->comune));
+            $diff = ($maxLength - strlen($tableElement->provincia));
             $emptySpace = "";
 //            if($diff > 0)
 //            {
@@ -63,18 +63,10 @@
 //                    $emptySpace = $emptySpace . "&nbsp;";
 //                }
 //            }
-                                        
-//                                        <div class="progress">
-//                                            <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
-//                                                <span class="sr-only">95% Complete (success)</span>
-//                                            </div>
-//                                        </div>
-//                                    </div>
-            
                 echo "<div class=\"lv-item\">";
                 echo "<div class=\"lv-title m-b-5\">";
                 //echo "<div class=\"pull-left-p-relative\">";
-                echo "" . $tableElement->comune . $emptySpace . "</i>";
+                echo "" . $tableElement->provincia . $emptySpace . "</i>";
                 echo "</div>";
                                                 
 //                echo "<div class=\"pull-right\">" . $tableElement->totale . "</div>";
