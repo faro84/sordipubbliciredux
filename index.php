@@ -30,7 +30,7 @@
                 </li>
             
                 <li class="logo hidden-xs">
-                    <a href="index.html">Material Admin</a>
+                    <a href="index.php">Material Admin</a>
                 </li>
                 
                 <li class="pull-right">
@@ -275,7 +275,7 @@
             
             <!-- Top Search Content -->
             <div id="top-search-wrap">
-                <input type="text">
+                <input type="text" id="country_name">
                 <i id="top-search-close">&times;</i>
             </div>
         </header>
@@ -631,7 +631,6 @@
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
         <script src="vendors/bower_components/flot/jquery.flot.js"></script>
         <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
         <script src="vendors/bower_components/flot/jquery.flot.pie.js"></script>
@@ -653,6 +652,8 @@
         
         <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
         
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="js/search/autocompletesearch.js"></script>
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>

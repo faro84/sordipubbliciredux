@@ -26,13 +26,15 @@
             die("Connection failed: " . $conn->connect_error);
         }
         
+        $codTip = filter_input (INPUT_GET, 'cod_tip', FILTER_SANITIZE_STRING);
+        
         $sql = "SELECT descr_comune, totale, totalepercittadino, descrizione,"
                 . " comuni_spesatotale_per_tipologia.cod_comune, comuni_spesatotale_per_tipologia.cod_provincia"
                 . " FROM soldipubblici_notebook.comuni_spesatotale_per_tipologia "
                 . " JOIN soldipubblici_notebook.anagrafe_comuni"
                 . " ON comuni_spesatotale_per_tipologia.cod_comune = anagrafe_comuni.cod_comune"
                 . " AND comuni_spesatotale_per_tipologia.cod_provincia = anagrafe_comuni.cod_provincia"
-                . " WHERE coddescrizione = '" . $_GET["cod_tip"] . "'"
+                . " WHERE coddescrizione = '" . $codTip . "'"
                 . " ORDER BY comuni_spesatotale_per_tipologia.totale DESC"
                 . " LIMIT 200;";
 //        echo $sql;
@@ -77,7 +79,7 @@
                     . " FROM soldipubblici_notebook.comuni_spesatotale_per_anno_per_tipologia"
                     . " WHERE cod_comune = '" . $tableElement->cod_com . "'"
                     . " AND cod_provincia= '" . $tableElement->cod_prov . "'"
-                    . " AND coddescrizione = '" . $_GET["cod_tip"] . "';";
+                    . " AND coddescrizione = '" . $codTip . "';";
             
 //            echo $sql2 . PHP_EOL;
             $result2 = $conn->query($sql2);

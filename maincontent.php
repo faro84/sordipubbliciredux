@@ -6,16 +6,34 @@
                 </div>            
             </div>
         </div>
-           
-        <div class="card">
-            <div class="card-header">
-                <h2>Basic Example <small>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</small></h2>
-            </div>
-                        
-            <div class="table-responsive">
-                <?php include("php/getdata/getspesecomune.php"); ?>
-            </div>
-        </div>
+        
+        <div class="col-sm-4">
+                        <!-- Rating -->
+                        <div class="card rating-list">
+                            <div class="listview">
+                                <div class="lv-header">
+                                    <div class="m-t-5">
+                                        Average Rating 3.0
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+                                    
+                                    <div class="rl-star">
+                                        <i class="md md-star active"></i>
+                                        <i class="md md-star active"></i>
+                                        <i class="md md-star active"></i>
+                                        <i class="md md-star"></i>
+                                        <i class="md md-star"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="lv-body">
+                                    <div class="p-15">
+                                        <?php include("php/getdata/nazione/toptencomuni.php"); ?>                           
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     
                     
         <div class="card">

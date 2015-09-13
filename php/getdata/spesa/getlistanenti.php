@@ -30,14 +30,14 @@
 //                . " WHERE coddescrizione = '" . $_GET["cod_tip"] . "'"
 //                . " ORDER BY enti_spesatotale_per_tipologia.totale DESC"
 //                . " LIMIT 200;";
-        
+        $codTip = filter_input (INPUT_GET, 'cod_tip', FILTER_SANITIZE_STRING);
         $sql = "SELECT enti_spesatotale.cod_ente,enti_spesatotale.cod_comune, tipologia_ente,"
                     . " enti_spesatotale_per_tipologia.totale,enti_spesatotale_per_tipologia.totalepercittadino,"
                     . " enti_spesatotale.cod_provincia,enti_spesatotale_per_tipologia.descrizione_ente,descrizione,coddescrizione"
                     . " FROM soldipubblici_notebook.enti_spesatotale_per_tipologia"
                     . " JOIN soldipubblici_notebook.enti_spesatotale"
                     . " ON enti_spesatotale.cod_ente = enti_spesatotale_per_tipologia.cod_ente"
-                    . " WHERE coddescrizione = '" . $_GET["cod_tip"] . "'"
+                    . " WHERE coddescrizione = '" . $codTip . "'"
                     . " AND tipologia_ente = ''"
                     . " ORDER BY enti_spesatotale_per_tipologia.totale DESC"
                     . " LIMIT 200;";
@@ -80,7 +80,7 @@
             $sql2 = "SELECT totale,anno"
                     . " FROM soldipubblici_notebook.enti_spesatotale_per_anno_per_tipologia"
                     . " WHERE cod_ente = '" . $tableElement->cod_ente . "'"
-                    . " AND coddescrizione = '" . $_GET["cod_tip"] . "';";
+                    . " AND coddescrizione = '" . $codTip . "';";
             
 //            echo $sql2 . PHP_EOL;
             $result2 = $conn->query($sql2);
